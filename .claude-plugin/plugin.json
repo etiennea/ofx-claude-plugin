@@ -1,0 +1,13 @@
+{
+  "name": "familyofx",
+  "displayName": "FamilyOFX",
+  "version": "0.1.0",
+  "description": "Connect Claude to your FamilyOFX organisation via MCP — portfolio, CRM, documents, tasks, calendar, and imports.",
+  "author": {
+    "name": "EA SOFT LTD",
+    "url": "https://familyofx.com"
+  },
+  "homepage": "https://familyofx.com/docs/settings/mcp-connections",
+  "repository": "https://github.com/familyofx/ofx-claude-plugin",
+  "keywords": ["family-office", "portfolio", "mcp", "crm"]
+}

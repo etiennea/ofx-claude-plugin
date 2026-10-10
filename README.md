@@ -1,0 +1,47 @@
+# FamilyOFX Claude plugin
+
+Thin Claude Code / Claude Desktop plugin that bundles the **FamilyOFX remote MCP server** and a **catch-all skill** so Claude uses connector tools for portfolio, CRM, documents, tasks, calendar, and imports.
+
+Sources live in the FamilyOFX monorepo at `apps/ofx-claude-plugin/`.
+
+## Setup
+
+### Claude Code
+
+1. Install or load this plugin (marketplace entry or local path):
+
+   ```bash
+   claude plugin install /path/to/apps/ofx-claude-plugin
+   ```
+
+   Or add the plugin directory via **Settings → Plugins** when using a marketplace manifest.
+
+2. Enable the plugin. Claude Code starts the MCP server defined in `.mcp.json`.
+
+3. Complete **OAuth** when prompted: sign in to FamilyOFX, pick the **organisation**, and **Allow** access.
+
+4. Ask questions about your office data; invoke the skill with `/familyofx:familyofx` if needed.
+
+Validate the manifest locally (requires Claude Code v2.1.281+):
+
+```bash
+claude plugin validate ./apps/ofx-claude-plugin
+```
+
+### Claude Desktop / Connectors Directory
+
+Use the universal MCP URL `https://api.familyofx.com/mcp` with OAuth. Product steps: [MCP connections](https://familyofx.com/docs/settings/mcp-connections).
+
+## Privacy Policy
+
+FamilyOFX is operated by **EA SOFT LTD**. This plugin connects Claude to your FamilyOFX account over OAuth; tool calls read or queue actions against **one organisation** you select at consent.
+
+- **Privacy Policy:** https://familyofx.com/privacy  
+- **Support:** https://familyofx.com (contact details on the site)  
+- **Data handling:** Read tools return live org data you are authorised to see. Write tools create **pending approvals** in FamilyOFX; nothing mutates until you accept in the app. Revoke access under **Settings → Integrations → AI connectors**.
+
+## Store submission (ops)
+
+Claude Connectors Directory and similar stores require a **public GitHub repository** mirroring this folder (dedicated repo or public mirror of `apps/ofx-claude-plugin/`). That mirror is created **after merge** to main; update `repository` in `.claude-plugin/plugin.json` with the live public URL before submission.
+
+Intended mirror (placeholder until ops publishes): `https://github.com/familyofx/ofx-claude-plugin`
