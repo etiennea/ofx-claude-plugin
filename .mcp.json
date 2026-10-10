@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "familyofx": {
+      "type": "http",
+      "url": "https://api.familyofx.com/mcp"
+    }
+  }
+}
