@@ -30,7 +30,7 @@ claude plugin validate ./apps/ofx-claude-plugin
 
 ### Claude Desktop / Connectors Directory
 
-Use the universal MCP URL `https://api.familyofx.com/mcp` with OAuth. Product steps: [MCP connections](https://familyofx.com/docs/settings/mcp-connections).
+Use the universal MCP URL `https://familyofx.com/api/mcp` with OAuth. Product steps: [MCP connections](https://familyofx.com/docs/settings/mcp-connections).
 
 ## Privacy Policy
 

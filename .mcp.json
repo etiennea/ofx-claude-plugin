@@ -2,7 +2,7 @@
   "mcpServers": {
     "familyofx": {
       "type": "http",
-      "url": "https://api.familyofx.com/mcp"
+      "url": "https://familyofx.com/api/mcp"
     }
   }
 }
