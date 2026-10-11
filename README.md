@@ -2,7 +2,7 @@
 
 Thin Claude Code / Claude Desktop plugin that bundles the **FamilyOFX remote MCP server** and a **catch-all skill** so Claude uses connector tools for portfolio, CRM, documents, tasks, calendar, and imports.
 
-Sources live in the FamilyOFX monorepo at `apps/ofx-claude-plugin/`.
+Sources live in the FamilyOFX monorepo at `apps/ofx-claude-plugin/`. Pushes to `main` that touch this folder are published to the public repo [etiennea/ofx-claude-plugin](https://github.com/etiennea/ofx-claude-plugin).
 
 ## Setup
 

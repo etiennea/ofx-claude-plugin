@@ -8,6 +8,6 @@
     "url": "https://familyofx.com"
   },
   "homepage": "https://familyofx.com/docs/settings/mcp-connections",
-  "repository": "https://github.com/familyofx/ofx-claude-plugin",
+  "repository": "https://github.com/etiennea/ofx-claude-plugin",
   "keywords": ["family-office", "portfolio", "mcp", "crm"]
 }
