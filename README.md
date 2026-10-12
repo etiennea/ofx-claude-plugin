@@ -42,6 +42,20 @@ FamilyOFX is operated by **EA SOFT LTD**. This plugin connects Claude to your Fa
 
 ## Store submission (ops)
 
-Claude Connectors Directory and similar stores require a **public GitHub repository** mirroring this folder (dedicated repo or public mirror of `apps/ofx-claude-plugin/`). That mirror is created **after merge** to main; update `repository` in `.claude-plugin/plugin.json` with the live public URL before submission.
+Pushes to `main` that touch this folder mirror it to [etiennea/ofx-claude-plugin](https://github.com/etiennea/ofx-claude-plugin).
 
-Intended mirror (placeholder until ops publishes): `https://github.com/familyofx/ofx-claude-plugin`
+### OpenAI plugin directory
+
+Build the submission ZIP:
+
+```bash
+python3 apps/ofx-claude-plugin/scripts/package-openai-zip.py
+```
+
+That writes `apps/ofx-claude-plugin/dist/familyofx-openai-plugin.zip`. The archive root is a portable plugin: `plugin.json`, `mcp.json` (OAuth via CIMD, server `https://familyofx.com/api/mcp`), `skills/`, and `assets/`. Listing text, test cases, and the demo recording come from `.codex-plugin/plugin.json`. Reviewer credentials stay out of the ZIP; enter them in the portal from `docs/store-reviewer-account.md`.
+
+The same script runs in `.github/workflows/publish-claude-plugin.yml`. The workflow uploads the ZIP as an Actions artifact and replaces the asset on the public repo release `openai-submission`:
+
+https://github.com/etiennea/ofx-claude-plugin/releases/tag/openai-submission
+
+OpenAI does not offer an API to push that ZIP into the plugin portal. Upload it there for the first submission, and again when metadata, skills, or icons change. Bump `version` in `.codex-plugin/plugin.json` before an update upload. After the plugin is published, changes to the hosted MCP tools are scanned by OpenAI and do not need a new ZIP.
