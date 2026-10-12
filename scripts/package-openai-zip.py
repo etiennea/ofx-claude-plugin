@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Build the OpenAI plugin-directory ZIP from apps/ofx-claude-plugin.
 
-The portal wants one plugin root: a portable plugin.json, mcp.json with OAuth
-settings, skills, and icons. Claude and Codex keep their own manifests in this
-folder; those files are not copied into the ZIP, so the portal does not see
-two plugin roots.
+The portal reads a portable plugin.json and mcp.json. OpenAI settings live in
+root plugin.json under extensions.com.openai, and OAuth lives in mcp.json
+under extensions.com.openai.auth. When that object is present, OpenAI ignores
+.codex-plugin/plugin.json. .mcp.json and .app.json stay out of the ZIP.
 
 OpenAI has no API for directory uploads. CI publishes this ZIP as a release
 asset. After the plugin is published, hosted MCP tool changes are scanned by
@@ -25,6 +25,7 @@ OUT_ZIP = OUT_DIR / "familyofx-openai-plugin.zip"
 SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 MCP_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
 MCP_URL = "https://familyofx.com/api/mcp"
+AUTH_BASE = "https://familyofx.com/api/auth"
 
 INCLUDE_PREFIXES = ("skills/", "assets/")
 
@@ -60,6 +61,8 @@ def mcp_manifest() -> dict:
                         "auth": {
                             "type": "oauth",
                             "client": {"mode": "cimd"},
+                            "authorizationUrl": f"{AUTH_BASE}/oauth2/authorize",
+                            "tokenUrl": f"{AUTH_BASE}/oauth2/token",
                             "resource": MCP_URL,
                         }
                     }
@@ -108,8 +111,11 @@ def main() -> None:
             archive.writestr(info, files[name])
     with zipfile.ZipFile(OUT_ZIP) as archive:
         names = archive.namelist()
-    if any(name.startswith((".codex-plugin/", ".claude-plugin/", ".mcp.json")) for name in names):
-        raise SystemExit("OpenAI ZIP included a second plugin manifest")
+    if any(
+        name.startswith((".codex-plugin/", ".claude-plugin/", ".mcp.json", ".app.json"))
+        for name in names
+    ):
+        raise SystemExit("OpenAI ZIP included a non-portable manifest")
     print(OUT_ZIP)
     for name in names:
         print(f"  {name}")
