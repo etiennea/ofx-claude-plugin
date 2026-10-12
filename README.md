@@ -52,7 +52,7 @@ Build the submission ZIP:
 python3 apps/ofx-claude-plugin/scripts/package-openai-zip.py
 ```
 
-That writes `apps/ofx-claude-plugin/dist/familyofx-openai-plugin.zip`. The archive root is a portable plugin: `plugin.json`, `mcp.json` (pre-registered public OAuth client `familyofx-openai`, no client secret, server `https://familyofx.com/api/mcp`), `skills/`, and `assets/`. Listing text, test cases, and the demo recording come from `.codex-plugin/plugin.json`. Reviewer credentials stay out of the ZIP; enter them in the portal from `docs/store-reviewer-account.md`.
+That writes `apps/ofx-claude-plugin/dist/familyofx-openai-plugin.zip`. The archive root is a portable plugin: `plugin.json`, `mcp.json` (OAuth via CIMD, server `https://familyofx.com/api/mcp`), `skills/`, and `assets/`. Listing text, test cases, and the demo recording come from `.codex-plugin/plugin.json`. Reviewer credentials stay out of the ZIP; enter them in the portal from `docs/store-reviewer-account.md`.
 
 The same script runs in `.github/workflows/publish-claude-plugin.yml`. The workflow uploads the ZIP as an Actions artifact and replaces the asset on the public repo release `openai-submission`:
 

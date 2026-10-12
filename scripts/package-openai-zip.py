@@ -26,9 +26,6 @@ SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 MCP_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
 MCP_URL = "https://familyofx.com/api/mcp"
 AUTH_BASE = "https://familyofx.com/api/auth"
-# Public PKCE client. Must match OPENAI_OAUTH_CLIENT_ID in
-# apps/ofx/src/modules/mcp/openai-oauth-client.ts. No client secret.
-OPENAI_OAUTH_CLIENT_ID = "familyofx-openai"
 
 INCLUDE_PREFIXES = ("skills/", "assets/")
 
@@ -63,11 +60,7 @@ def mcp_manifest() -> dict:
                     "com.openai": {
                         "auth": {
                             "type": "oauth",
-                            "client": {
-                                "mode": "provided",
-                                "clientId": OPENAI_OAUTH_CLIENT_ID,
-                                "tokenEndpointAuthMethod": "none",
-                            },
+                            "client": {"mode": "cimd"},
                             "authorizationUrl": f"{AUTH_BASE}/oauth2/authorize",
                             "tokenUrl": f"{AUTH_BASE}/oauth2/token",
                             "resource": MCP_URL,

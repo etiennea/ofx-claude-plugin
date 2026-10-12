@@ -1,6 +1,6 @@
 {
   "name": "familyofx",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Read a FamilyOFX organisation and queue changes for approval in FamilyOFX.",
   "author": {
     "name": "EA SOFT LTD",
@@ -93,7 +93,7 @@
         "commerce_description": "This plugin does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Register a public OAuth client for the ChatGPT connector. Reads run live. Writes wait for approval in FamilyOFX."
+        "release_notes": "ChatGPT connects with OAuth client metadata. Reads run live. Writes wait for approval in FamilyOFX."
       }
     }
   }
