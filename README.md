@@ -37,7 +37,7 @@ Use the universal MCP URL `https://familyofx.com/api/mcp` with OAuth. Product st
 FamilyOFX is operated by **EA SOFT LTD**. This plugin connects Claude to your FamilyOFX account over OAuth; tool calls read or queue actions against **one organisation** you select at consent.
 
 - **Privacy Policy:** https://familyofx.com/privacy  
-- **Support:** https://familyofx.com (contact details on the site)  
+- **Support:** https://familyofx.com/support  
 - **Data handling:** Read tools return live org data you are authorised to see. Write tools create **pending approvals** in FamilyOFX; nothing mutates until you accept in the app. Revoke access under **Settings → Integrations → AI connectors**.
 
 ## Store submission (ops)
