@@ -16,6 +16,7 @@ When the user asks about **FamilyOFX**, **this family office**, **portfolio**, *
 2. **Destructive / write tools only queue approvals** — they do not mutate data immediately. Tell the user to **accept the pending action in FamilyOFX → AI Agents** (or review under **Settings → Integrations → AI connectors**).
 3. **Do not invent REST or SDK calls** — stay within the connector tool surface exposed by MCP.
 4. **Batch import** — the source document must **already exist in the organisation** (upload in FamilyOFX first via Documents, shared inbox, or chat). MCP does not upload files from Claude in v1.
+5. **Cash flow plans** — use the `cashflow_plans` tool for plan assumptions and forecast rows. Writes wait for approval in FamilyOFX.
 
 ## Operator help
 
