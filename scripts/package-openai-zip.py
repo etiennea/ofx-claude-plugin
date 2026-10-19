@@ -50,6 +50,10 @@ def portable_manifest(codex: dict) -> dict:
 
 
 def mcp_manifest() -> dict:
+    # The plugin portal's Connect form drops an imported CIMD client and then
+    # rejects the save because no predefined client ID is present. Declare the
+    # public client the API registers in openai-oauth-client.ts. It uses PKCE
+    # and has no secret, so the portal must not ask for one.
     return {
         "$schema": MCP_SCHEMA,
         "mcpServers": {
@@ -60,7 +64,11 @@ def mcp_manifest() -> dict:
                     "com.openai": {
                         "auth": {
                             "type": "oauth",
-                            "client": {"mode": "cimd"},
+                            "client": {
+                                "mode": "provided",
+                                "clientId": "familyofx-openai",
+                                "tokenEndpointAuthMethod": "none",
+                            },
                             "authorizationUrl": f"{AUTH_BASE}/oauth2/authorize",
                             "tokenUrl": f"{AUTH_BASE}/oauth2/token",
                             "resource": MCP_URL,

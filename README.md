@@ -52,7 +52,13 @@ Build the submission ZIP:
 python3 apps/ofx-claude-plugin/scripts/package-openai-zip.py
 ```
 
-That writes `apps/ofx-claude-plugin/dist/familyofx-openai-plugin.zip`. The archive root is a portable plugin: `plugin.json`, `mcp.json` (OAuth via CIMD, server `https://familyofx.com/api/mcp`), `skills/`, and `assets/`. Listing text, test cases, and the demo recording come from `.codex-plugin/plugin.json`. Reviewer credentials stay out of the ZIP; enter them in the portal from `docs/store-reviewer-account.md`.
+That writes `apps/ofx-claude-plugin/dist/familyofx-openai-plugin.zip`. The archive root is a portable plugin: `plugin.json`, `mcp.json` (public OAuth client `familyofx-openai`, no client secret, server `https://familyofx.com/api/mcp`), `skills/`, and `assets/`. Listing text, test cases, and the demo recording come from `.codex-plugin/plugin.json`. Reviewer credentials stay out of the ZIP; enter them in the portal from `docs/store-reviewer-account.md`.
+
+The plugin portal’s Connect button ignores the client ID imported from that file and reports that an OAuth client ID is required. On the existing draft, open the MCP editor instead of Connect:
+
+`https://platform.openai.com/plugins/apps/edit/<app id>/<version id>?section=MCP%20Server`
+
+The app id is the plugin id without the `plugin_` prefix. Under Advanced settings, leave token endpoint authentication on None, enter OAuth client ID `familyofx-openai`, and choose Scan Tools. The callback on that page must be exactly `https://chatgpt.com/connector_platform_oauth_redirect`. Uploading a new ZIP onto the same draft does not replace the saved OAuth client. A new submission has to be a new plugin.
 
 The same script runs in `.github/workflows/publish-claude-plugin.yml`. The workflow uploads the ZIP as an Actions artifact and replaces the asset on the public repo release `openai-submission`:
 
