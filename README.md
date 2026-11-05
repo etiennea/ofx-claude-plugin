@@ -38,7 +38,7 @@ FamilyOFX is operated by **EA SOFT LTD**. This plugin connects Claude to your Fa
 
 - **Privacy Policy:** https://familyofx.com/privacy  
 - **Support:** https://familyofx.com/support  
-- **Data handling:** Read tools return live org data you are authorised to see. Write tools create **pending approvals** in FamilyOFX; nothing mutates until you accept in the app. Revoke access under **Settings → Integrations → AI connectors**.
+- **Data handling:** Read tools return live org data you are authorised to see. Write tools create **pending approvals** in FamilyOFX; nothing mutates until you accept in the app. Revoke access under **Settings → Integrations → AI connectors → Manage**.
 
 ## Store submission (ops)
 
