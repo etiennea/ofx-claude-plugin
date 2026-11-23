@@ -20,7 +20,7 @@ For a whole job, use the matching workflow skill: `quarterly-review`, `capital-c
 4. **Numbers.** `get_portfolio_summary` for the consolidated NAV and allocation. `portfolio_analytics` for a split by legal entity, custodian, asset type, or currency (`view: breakdown`), or cash flows by period (`view: cash_flows`). Transaction values are always positive; the type gives the direction. Cash flows are summed per currency and not converted.
 5. **Links.** When a record has a `url`, include it so the user can open it.
 6. **Do not invent REST or SDK calls.** Stay within the connector tools.
-7. **Documents must already be in FamilyOFX.** Upload happens in the app (Documents, shared inbox, or chat). Then use `documents` search and read. For more than 20 holdings or transactions from one file, extract them and send one `batch_import_from_document` call.
+7. **Documents.** Search and read files already in FamilyOFX. To file a chat attachment onto a holding or transaction: `documents` action `prepare_upload` → PUT the original bytes to `uploadUrl` → `documents_write` action `file` with `uploadId` and `positionId` or `transactionId`. The Claude account must allow network egress to `familyofx.com` (Settings → Capabilities → Code execution and file creation). For more than 20 holdings or transactions from one file already in the organisation, extract them and send one `batch_import_from_document` call.
 8. **Capital calls, invoices and payment due dates are tasks**, not calendar events.
 9. **Read-only grants.** If change tools are missing or refused with `ofx:read`, tell the user the connection is read-only.
 

@@ -1,18 +1,21 @@
 ---
 name: file-statement
 description: >-
-  File a bank, custodian, or fund statement that is already in FamilyOFX:
-  identify the holding, record the valuation or import lines, attach the
-  document, and set the reminder for the next statement. Use when the user says
-  "file this statement", "process the latest statements", or "update NAVs from
-  the statements".
+  File a bank, custodian, or fund statement into FamilyOFX: upload a Claude
+  attachment if needed, identify the holding, record the valuation or import
+  lines, attach the document, and set the reminder for the next statement. Use
+  when the user says "file this statement", "process the latest statements", or
+  "update NAVs from the statements".
 ---
 
 # File a statement
 
 ## Steps
 
-1. **Find it.** Call `documents` with action `search`. Recent uploads come first. Read the document with action `read`; follow `nextStartLine` until done.
+1. **Get the file into FamilyOFX.**
+   - Already in the library: call `documents` with action `search`. Recent uploads come first.
+   - Attached in this Claude chat: call `documents` action `prepare_upload` with filename, mimeType, and size; PUT the original bytes to `uploadUrl`; then `documents_write` action `file` with `uploadId` and the holding’s `positionId` (after you match it in step 3). The Claude account must allow egress to `familyofx.com`.
+   - Read the document with action `read`; follow `nextStartLine` until done.
 2. **Identify** the institution, account or fund, statement date, currency, and closing value. A custodian statement may list many lines.
 3. **Match holdings.** Call `positions` with action `search` for each account or fund. Ask the user rather than guess when there is no clear match.
 4. **Record values.**
